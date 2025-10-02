@@ -1,0 +1,18 @@
+.ordered-list {
+  border: 1px solid #0d6efd;
+  border-left: 6px solid #0d6efd;
+  padding: 6px 12px;
+  background-color: #fafafa;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.list-item {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.list-item:hover {
+  cursor: pointer;
+  background-color: #f8f9fa;
+  color: #0d6efd;
+}

@@ -1,0 +1,14 @@
+.talent-lab-team {
+  border: 1px solid #0d6efd;
+  border-left: 6px solid #0d6efd;
+  padding: 6px 12px;
+  background-color: #fafafa;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 200ms ease;
+}
+
+.talent-lab-team:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 200ms ease;
+}

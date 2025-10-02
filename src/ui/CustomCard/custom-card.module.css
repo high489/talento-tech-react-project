@@ -1,0 +1,19 @@
+.custom-card {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 200ms ease-in;
+}
+
+.custom-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 200ms ease-out;
+}
+
+.title {
+  text-align: center;
+  font-size: 20px;
+}
+
+.description {
+  text-align: justify;
+  font-size: 15px;
+}

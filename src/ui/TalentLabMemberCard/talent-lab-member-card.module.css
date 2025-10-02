@@ -1,0 +1,9 @@
+.member-card {
+  transition: transform 0.2s ease-out;
+  cursor: pointer;
+}
+
+.member-card:hover {
+  transform: translate(-1.5px, -1.5px);
+  transition: transform 0.2s ease-in;
+}

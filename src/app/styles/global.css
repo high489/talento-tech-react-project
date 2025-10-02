@@ -1,0 +1,33 @@
+body {
+  font-family: var(--font-main);
+}
+
+/* app-container is custom container for adaptive layout */
+/* base screen size: large desktop 1440px  */
+.app-container {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* screen size: desktop 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .app-container {
+    max-width: 960px;
+  }
+}
+
+/* screen size: tablet 768px */
+@media (min-width: 481px) and (max-width: 768px) {
+  .app-container {
+    max-width: 720px;
+  }
+}
+
+/* screen size: mobile 480px */
+@media (max-width: 480px) {
+  .app-container {
+    max-width: 100%;
+    padding: 0 15px;
+  }
+}
