@@ -1,22 +1,30 @@
-import styles from './navigation.module.css'
-import { Container, Nav, Navbar } from 'react-bootstrap'
+import styles from './Navigation.module.css'
+import { Nav, Navbar, NavDropdown } from 'react-bootstrap'
+import { NavLink, useLocation } from 'react-router-dom'
 
-const Navigation = ({ brandTitle, navLinks }) => {
+const Navigation = () => {
+  const location = useLocation()
+  const isDropdownActive = location.pathname.startsWith('/class')
   return (
-    <Navbar className={`mb-4 ${styles['navbar-custom']}`}>
-      <Container className="d-flex justify-content-between">
-        <Navbar.Brand href='#'>{brandTitle}</Navbar.Brand>
-        <Nav>
-          {navLinks.map((navLink, index) => (
-            <Nav.Link
-              key={index}
-              href='#'
-            >
-              {navLink}
-            </Nav.Link>
-          ))}
-        </Nav>
-      </Container>
+    <Navbar className='py-3 d-flex justify-content-between' variant='dark'>
+      <Navbar.Brand href='#'>eCommerce App</Navbar.Brand>
+
+      <Nav>
+        <Nav.Link as={NavLink} to='/'>Inicio</Nav.Link>
+        <Nav.Link as={NavLink} to='/final'>Proyecto</Nav.Link>
+
+        <NavDropdown
+          title='Ejercicios'
+          id='nav-dropdown'
+          menuVariant='dark'
+          className={isDropdownActive ? styles['dropdown-active'] : ''}
+        >
+          <NavDropdown.Item as={NavLink} to='/class01'>Clase01</NavDropdown.Item>
+          <NavDropdown.Item as={NavLink} to='/class02'>Clase02</NavDropdown.Item>
+          <NavDropdown.Item as={NavLink} to='/class03'>Clase03</NavDropdown.Item>
+          <NavDropdown.Item as={NavLink} to='/class04'>Clase04</NavDropdown.Item>
+        </NavDropdown>
+      </Nav>
     </Navbar>
   )
 }

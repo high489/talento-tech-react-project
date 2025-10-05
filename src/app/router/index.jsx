@@ -1,0 +1,19 @@
+import { Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
+
+import { Layout } from './Layout'
+import { Class01, Class02, Class03, Class04, FinalProject, Home } from '@views'
+
+const router = createBrowserRouter(createRoutesFromElements(
+  <>
+    <Route path='/' element={<Layout />}>
+      <Route index element={<Home />} />
+      <Route path='/class01' element={<Class01 />} />
+      <Route path='/class02' element={<Class02 />} />
+      <Route path='/class03' element={<Class03 />} />
+      <Route path='/class04' element={<Class04 />} />
+      <Route path='/final' element={<FinalProject />} />
+    </Route>
+  </>
+), { basename: '/talento-tech-react-project' })
+
+export { router }

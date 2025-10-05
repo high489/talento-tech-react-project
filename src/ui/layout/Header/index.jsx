@@ -1,11 +1,12 @@
-import styles from './header.module.css'
 import { Container } from 'react-bootstrap'
 
 const Header = ({ children }) => {
   return (
-    <Container as='header' className={styles['header']}>
-      {children}
-    </Container>
+    <header className='text-bg-dark'>
+      <Container>
+        {children}
+      </Container>
+    </header>
   )
 }
 

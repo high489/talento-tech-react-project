@@ -1,6 +1,6 @@
-import { Cart, ProductsList } from '@ui'
-import styles from './exercise04-1.module.css'
 import { useState } from 'react'
+
+import { Cart, ProductsList } from '@ui'
 
 const mockProducts = [
   {
@@ -79,7 +79,7 @@ const Exercise04_1 = () => {
   }
 
   return (
-    <div className={`${styles['exercise04-1']}`}>
+    <div>
       <Cart 
         cartList={cartList}
         onClear={clearCart}

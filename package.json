@@ -1,5 +1,5 @@
 {
-  "name": "talento-tech-project",
+  "name": "talento-tech-react-project",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -14,7 +14,8 @@
     "normalize.css": "^8.0.1",
     "react": "^19.1.1",
     "react-bootstrap": "^2.10.10",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^7.9.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",

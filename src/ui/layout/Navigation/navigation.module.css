@@ -1,0 +1,3 @@
+.dropdown-active :global(.dropdown-toggle) {
+  color: var(--bs-navbar-active-color);
+}
