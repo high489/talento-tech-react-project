@@ -1,6 +1,5 @@
 export { Class01 } from './Class01'
 export { Class02 } from './Class02'
 export { Class03 } from './Class03'
-export { Class04 } from './Class04'
-export { FinalProject } from './FinalProject'
+export { ECommerceApp } from './ECommerceApp'
 export { Home } from './Home'

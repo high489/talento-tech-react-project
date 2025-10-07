@@ -1,12 +1,17 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import svgr from 'vite-plugin-svgr'
 import path from 'path'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    svgr(),
+  ],
   base: '/talento-tech-react-project/',
   resolve: {
     alias: {
+      '@public': path.resolve(__dirname, 'public'),
       '@src': path.resolve(__dirname, 'src'),
       '@app': path.resolve(__dirname, 'src/app'),
       '@assets': path.resolve(__dirname, 'src/app/assets'),

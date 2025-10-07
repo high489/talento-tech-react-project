@@ -1,8 +1,3 @@
-export { Header } from './layout/Header'
-export { Navigation } from './layout/Navigation'
-export { Footer } from './layout/Footer'
-export { Main } from './layout/Main'
-
 export { ActionButton } from './buttons/ActionButton'
 
 export { Cart } from './Cart'

@@ -5,24 +5,25 @@ import { ProductsListItem } from '@ui'
 
 const ProductsList = ({ products, onAdd, cartList }) => {
   return (
-    <div className={`${styles['products-list']}`}>
-      <Row>
-        {products.map(p => {
-          const cartItem = cartList.find(c => c.id === p.id)
-          const cartQuantity = cartItem ? cartItem.quantity : 0
+    <Row
+      className={`${styles['products-list']} g-4 align-items-stretch`}
+      xs={1} md={2} lg={3}
+    >
+      {products.map(p => {
+        const cartItem = cartList.find(c => c.id === p.id)
+        const cartQuantity = cartItem ? cartItem.quantity : 0
 
-          return (
-            <Col key={p.id} sm={12} md={6} lg={4} className='mb-3'>
-              <ProductsListItem
-                product={p}
-                onAdd={onAdd}
-                cartQuantity={cartQuantity}
-              />
-            </Col>
-          )
-        })}
-      </Row>
-    </div>
+        return (
+          <Col key={p.id}>
+            <ProductsListItem
+              product={p}
+              onAdd={onAdd}
+              cartQuantity={cartQuantity}
+            />
+          </Col>
+        )
+      })}
+    </Row>
   )
 }
 

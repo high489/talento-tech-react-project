@@ -1,16 +1,13 @@
 import styles from './cart.module.css'
 import { ListGroup } from 'react-bootstrap'
 
-import { ActionButton, CartItem } from '@ui'
+import { CartItem } from '@ui'
 
-const Cart = ({ cartList, onClear, onBuy }) => {
-  const total = cartList.reduce((sum, item) => sum + item.quantity * item.price, 0)
-
+const Cart = ({ cartList, cartTotal }) => {
   return (
     <div className={`mt-4 ${styles['cart']}`}>
-      <h3>Carrito</h3>
       {cartList.length === 0 ? (
-        <p>Carrito vacío</p>
+        <p className='text-center'>Carrito vacío</p>
       ) : (
         <>
           <ListGroup>
@@ -18,12 +15,8 @@ const Cart = ({ cartList, onClear, onBuy }) => {
               <CartItem key={item.id} item={item} />
             ))}
           </ListGroup>
-          <div className='mt-2'>
-            <strong>Total: ${total}</strong>
-          </div>
-          <div className='d-flex gap-2 mt-3'>
-            <ActionButton text='Comprar' onClick={onBuy} />
-            <ActionButton text='Vaciar carrito' onClick={onClear} />
+          <div className='mt-2 px-1 text-end'>
+            <span className='fw-semibold'>Total: {cartTotal.toFixed(2)} USD</span>
           </div>
         </>
       )}

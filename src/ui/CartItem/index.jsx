@@ -4,7 +4,10 @@ import styles from './cart-item.module.css'
 const CartItem = ({ item }) => {
   return (
     <ListGroup.Item className={`${styles['cart-item']}`}>
-      {item.name} — {item.quantity} шт. = ${item.quantity * item.price}
+      <div className='d-flex justify-content-between'>
+        <span>{item.title}</span>
+        <span>{item.quantity} {item.quantity > 1 ? 'uds.' : 'ud.'} - {item.quantity * item.price} USD</span>
+      </div>
     </ListGroup.Item>
   )
 }
