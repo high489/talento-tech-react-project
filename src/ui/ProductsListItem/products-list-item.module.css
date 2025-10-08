@@ -16,6 +16,7 @@
 }
 
 .card-title {
+  text-decoration: none;
   font-size: 1.25rem;
   font-weight: 500;
   overflow: hidden;
