@@ -1,5 +1,6 @@
 import styles from './products-list-item.module.css'
 import { Card } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 import { ActionButton } from '@ui'
 
@@ -16,7 +17,12 @@ const ProductsListItem = ({ product, onAdd, cartQuantity }) => {
       />
       <Card.Body className='d-flex flex-column'>
         <div className='d-flex flex-column'>
-          <Card.Title className={`mb-1 ${styles['card-title']}`}>{product.title}</Card.Title>
+          <Card.Title
+            as={Link} to={`/e-commerce-app/${product.id}`}
+            className={`mb-1 ${styles['card-title']}`}
+          >
+            {product.title}
+          </Card.Title>
           <Card.Subtitle 
             className={`mb-3 text-muted ${styles['card-subtitle']}`}
           >

@@ -5,23 +5,26 @@ import { TalentLabMemberCard } from '@ui'
 
 const TalentLabTeam = ({ team, cardWidth = '300px', cardHeight = '150px', style }) => {
   return (
-    <Row xs={1} sm={2} xl={4}
+    <div
       className={`py-2 px-3 ${styles['talent-lab-team']}`}
       style={style}
     >
-      {team.map((member, index) => (
-        <Col
-          key={index}
-          className='d-flex justify-content-center my-2'
-        >
-          <TalentLabMemberCard
-            member={member}
-            cardWidth={cardWidth}
-            cardHeight={cardHeight}
-          />
-        </Col>
-      ))}
-    </Row>
+      <Row xs={1} sm={2} xl={4}>
+        {team.map((member, index) => (
+          <Col
+            key={index}
+            className='d-flex justify-content-center my-2'
+          >
+            <TalentLabMemberCard
+              member={member}
+              cardWidth={cardWidth}
+              cardHeight={cardHeight}
+            />
+          </Col>
+        ))}
+      </Row>
+    </div>
+    
   )
 }
 

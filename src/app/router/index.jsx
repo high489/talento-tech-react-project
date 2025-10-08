@@ -1,7 +1,15 @@
 import { Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 
 import { Layout } from './layout/Layout'
-import { Class01, Class02, Class03, ECommerceApp, Home, NotFound } from '@views'
+import {
+  Home,
+  Class01,
+  Class02,
+  Class03,
+  ECommerceApp,
+  ProductDetailsView,
+  NotFound,
+} from '@views'
 
 const router = createBrowserRouter(createRoutesFromElements(
   <>
@@ -11,6 +19,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route path='class02' element={<Class02 />} />
       <Route path='class03' element={<Class03 />} />
       <Route path='e-commerce-app' element={<ECommerceApp />} />
+      <Route path='e-commerce-app/:id' element={<ProductDetailsView />} />
       <Route path='*' element={<NotFound />} />
     </Route>
   </>

@@ -17,15 +17,16 @@ const Navigation = () => {
       expand='md'
       expanded={expanded}
     >
-      <Navbar.Brand as={Link} to='/' className='mx-2'>
+      <Navbar.Brand as={Link} to='/' className='mx-2 d-flex align-items-center gap-2'>
         <OwlLogo style={{ width: '35px', height: 'auto' }}/>
+        <Navbar.Text className='p-0 fs-5 fw-semibold text-white'>Lechuza</Navbar.Text>
       </Navbar.Brand>
 
       <Navbar.Toggle
         aria-controls='basic-navbar-nav'
         onClick={() => setExpanded(!expanded)}
       />
-      <Navbar.Collapse id='basic-navbar-nav' timeout={100}>
+      <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='ms-auto text-end'>
           <Nav.Link 
             className='mt-2 mt-md-0'
@@ -50,6 +51,7 @@ const Navigation = () => {
             align='end'
             drop='down'
             className={isDropdownActive ? styles['dropdown-active'] : ''}
+            renderMenuOnMount
           >
             <NavDropdown.Item as={NavLink} to='/class01' onClick={() => setExpanded(false)}>
               Clase01
