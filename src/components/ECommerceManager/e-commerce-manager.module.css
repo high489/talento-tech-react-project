@@ -1,9 +1,21 @@
 .cart-button {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: box-shadow 200ms ease;
+
+  align-self: flex-end;
+  width: 250px;
+  height: 50px;
+  padding: 10px 20px;
 }
 
 .cart-button:hover {
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
   transition: box-shadow 200ms ease;
+}
+
+@media (max-width: 767px) {
+  .cart-button {
+    width: 100%;
+    align-self: stretch;
+  }
 }

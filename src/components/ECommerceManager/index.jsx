@@ -73,13 +73,7 @@ const ECommerceManager = () => {
     <div className='w-100 py-3 gap-3 d-flex flex-column'>
       <ActionButton 
         onClick={toggleModal}
-        className={styles['cart-button']}
-        customStyle={{
-          alignSelf: 'flex-end',
-          width: '250px',
-          height: '50px',
-          padding: '10px 20px',
-        }}
+        className={`${styles['cart-button']}`}
         variant={cartList.length ? 'primary' : 'secondary'}
       >
         {cartList.length ? `Carrito: ${cartTotal.toFixed(2)} USD` : 'Carrito'}

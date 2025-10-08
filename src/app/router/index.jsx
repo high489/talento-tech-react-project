@@ -1,7 +1,7 @@
 import { Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 
 import { Layout } from './layout/Layout'
-import { Class01, Class02, Class03, ECommerceApp, Home } from '@views'
+import { Class01, Class02, Class03, ECommerceApp, Home, NotFound } from '@views'
 
 const router = createBrowserRouter(createRoutesFromElements(
   <>
@@ -11,6 +11,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route path='/class02' element={<Class02 />} />
       <Route path='/class03' element={<Class03 />} />
       <Route path='/e-commerce-app' element={<ECommerceApp />} />
+      <Route path='/*' element={<NotFound />} />
     </Route>
   </>
 ), { basename: '/talento-tech-react-project' })
