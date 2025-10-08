@@ -11,7 +11,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route path='/class02' element={<Class02 />} />
       <Route path='/class03' element={<Class03 />} />
       <Route path='/e-commerce-app' element={<ECommerceApp />} />
-      <Route path='/*' element={<NotFound />} />
+      <Route path='*' element={<NotFound />} />
     </Route>
   </>
 ), { basename: '/talento-tech-react-project' })
