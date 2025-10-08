@@ -7,10 +7,10 @@ const router = createBrowserRouter(createRoutesFromElements(
   <>
     <Route path='/' element={<Layout />}>
       <Route index element={<Home />} />
-      <Route path='/class01' element={<Class01 />} />
-      <Route path='/class02' element={<Class02 />} />
-      <Route path='/class03' element={<Class03 />} />
-      <Route path='/e-commerce-app' element={<ECommerceApp />} />
+      <Route path='class01' element={<Class01 />} />
+      <Route path='class02' element={<Class02 />} />
+      <Route path='class03' element={<Class03 />} />
+      <Route path='e-commerce-app' element={<ECommerceApp />} />
       <Route path='*' element={<NotFound />} />
     </Route>
   </>
