@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { GalleryInterests } from '@ui'
 
 const Exercise03_3 = () => {
-  const rawInterests = ['React', 'JavaScript', 'APIs', 'Diseño UX', 'Node.js']
+  const rawInterests = ['React', 'JavaScript', 'APIs', 'Diseño UX', 'Node.js', 'AI']
 
   const [interests, setInterests] = useState(
     rawInterests.map(name => ({ name, isActive: false }))
