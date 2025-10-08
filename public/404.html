@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="refresh" content="0; url=./" />
+    <meta charset="utf-8">
+    <title>Page Not Found</title>
+    <script type="text/javascript">
+      var pathname = window.location.pathname.replace('/talento-tech-react-project', '');
+      var newUrl = '/talento-tech-react-project' + pathname + window.location.search + window.location.hash;
+      sessionStorage.redirect = newUrl;
+      window.location.href = '/talento-tech-react-project/';
+    </script>
   </head>
   <body>
-    <p>If you are not redirected, <a href="./">click here</a>.</p>
+    <p>Redirecting...</p>
   </body>
 </html>
