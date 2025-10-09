@@ -1,3 +1,16 @@
+.brand-title {
+  color: var(--bs-white);
+  font-size: var(--font-size-title);
+  font-weight: 600;
+  line-height: var(--line-height-title);
+}
+
+.nav-link-text {
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
 .dropdown-active :global(.dropdown-toggle) {
   color: var(--bs-navbar-active-color);
 }

@@ -1,3 +1,7 @@
 .action-button {
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }

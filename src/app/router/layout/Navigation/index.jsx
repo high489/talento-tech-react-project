@@ -19,7 +19,7 @@ const Navigation = () => {
     >
       <Navbar.Brand as={Link} to='/' className='mx-2 d-flex align-items-center gap-2'>
         <OwlLogo style={{ width: '35px', height: 'auto' }}/>
-        <Navbar.Text className='p-0 fs-5 fw-semibold text-white'>Lechuza</Navbar.Text>
+        <Navbar.Text className={`p-0 ${styles['brand-title']}`}>Lechuza</Navbar.Text>
       </Navbar.Brand>
 
       <Navbar.Toggle
@@ -27,7 +27,7 @@ const Navigation = () => {
         onClick={() => setExpanded(!expanded)}
       />
       <Navbar.Collapse id='basic-navbar-nav'>
-        <Nav className='ms-auto text-end'>
+        <Nav className={`ms-auto text-end ${styles['nav-link-text']}`}>
           <Nav.Link 
             className='mt-2 mt-md-0'
             as={NavLink}
