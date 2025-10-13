@@ -1,3 +1,4 @@
+import styles from './layout.module.css'
 import { Outlet } from 'react-router-dom'
 
 import { Header, Main, Footer, Navigation } from '@app/router/layout'
@@ -12,9 +13,9 @@ const Layout = () => {
         <Outlet />
       </Main>
       <Footer>
-        <div className='py-3 d-flex flex-column align-items-end'>
-          <small className='fw-semibold'>Vitalii Matskaniuk</small>
-          <small>Talento Tech — 25235 | React JS</small>
+        <div className={`py-3 d-flex flex-column align-items-end ${styles['footer']}`}>
+          <span className='fw-semibold'>Vitalii Matskaniuk</span>
+          <span>Talento Tech — 25235 | React JS</span>
         </div>
       </Footer>
     </div>

@@ -73,17 +73,25 @@ const ECommerceManager = () => {
     <div className='w-100 py-3 gap-3 d-flex flex-column'>
       <ActionButton 
         onClick={toggleModal}
-        className={`${styles['cart-button']}`}
+        className={`align-self-end d-flex justify-content-center align-items-center
+          ${styles['cart-button']}`}
         variant={cartList.length ? 'primary' : 'secondary'}
       >
-        {cartList.length ? `Carrito: ${cartTotal.toFixed(2)} USD` : 'Carrito'}
+        {
+          cartList.length
+            ? <div className={`d-flex justify-content-between align-items-center ${styles['cart-button-text']}`}>
+                <span className=''>Carrito:</span>
+                <span className=''>{cartTotal.toFixed(2)} USD</span>
+              </div>
+            : 'Carrito'
+        }
       </ActionButton>
 
       <Modal show={isShowModal} onHide={toggleModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Carrito</Modal.Title>
+        <Modal.Header className='text-bg-dark' closeButton closeVariant='white'>
+          <Modal.Title className={styles['modal-title']}>Carrito</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className={styles['modal-body']}>
           <Cart 
             cartList={cartList}
             cartTotal={cartTotal}
@@ -91,9 +99,9 @@ const ECommerceManager = () => {
             onBuy={buyProducts}
           />
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className='text-bg-dark'>
           <ActionButton 
-            variant='primary' 
+            variant='success' 
             onClick={buyProducts}
             disabled={!cartList.length}
           >

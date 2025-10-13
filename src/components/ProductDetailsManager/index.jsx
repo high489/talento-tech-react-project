@@ -15,11 +15,12 @@ const ProductDetailsManager = () => {
   if (!product) return null
 
   return (
-    <div>
+    <>
       <ProductDetails
         product={product}
+        onAdd={() => {}}
       />
-    </div>    
+    </>    
   )
 }
 
