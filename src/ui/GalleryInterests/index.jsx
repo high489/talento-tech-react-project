@@ -8,7 +8,7 @@ const GalleryInterests = ({ interests, toggleInterest }) => {
     <Stack
       direction='horizontal'
       gap={3}
-      className={`py-2 px-2 flex-nowrap ${styles['gallery-interests']}`}
+      className={`py-2 px-2 ${styles['gallery-interests']}`}
     >
       {interests.map((interest, index) => (
         <ActionButton
