@@ -19,7 +19,6 @@ const CartList = ({ cartList, cartTotal }) => {
           <div className='mt-2 px-1 text-end'>
             <span className={styles['total-text']}>Total: ${cartTotal.toFixed(2)}</span>
           </div>}
-          
         </>
       )}
     </div>
