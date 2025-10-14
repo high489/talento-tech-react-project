@@ -1,5 +1,6 @@
 .back-button {
-  width: 150px;
+  width: 20%;
+  align-self: flex-start;
 }
 
 .add-cart-button {
@@ -49,8 +50,8 @@
 
 @media (max-width: 576px) {
   .back-button {
-    width: 100%;
-    align-self: stretch;
+    width: 20%;
+    align-self: flex-end;
   }
   .add-cart-button {
     width: 100%;

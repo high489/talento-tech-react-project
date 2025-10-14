@@ -1,0 +1,23 @@
+.item-title {
+  margin: 0;
+  width: 75%;
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-title);
+  line-height: var(--line-height-normal);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.item-info {
+  width: 25%;
+}
+
+@media (max-width: 767px) {
+  .item-title {
+    width: 60%;
+  }
+  .item-info {
+    width: 40%;
+  }
+}

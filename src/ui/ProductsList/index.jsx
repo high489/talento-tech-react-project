@@ -3,7 +3,7 @@ import { Col, Row } from 'react-bootstrap'
 
 import { ProductsListItem } from '@ui'
 
-const ProductsList = ({ products, onAdd, cartList }) => {
+const ProductsList = ({ products, onAddToCard, cartList }) => {
   return (
     <Row
       className={`${styles['products-list']} g-4 align-items-stretch`}
@@ -17,7 +17,7 @@ const ProductsList = ({ products, onAdd, cartList }) => {
           <Col key={p.id}>
             <ProductsListItem
               product={p}
-              onAdd={onAdd}
+              onAddToCard={onAddToCard}
               cartQuantity={cartQuantity}
             />
           </Col>

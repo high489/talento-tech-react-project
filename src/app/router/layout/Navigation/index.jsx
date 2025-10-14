@@ -38,10 +38,10 @@ const Navigation = () => {
           </Nav.Link>
           <Nav.Link
             as={NavLink}
-            to='/e-commerce-app'
+            to='/products'
             onClick={() => setExpanded(false)}
           >
-            eCommerce App
+            Productos
           </Nav.Link>
 
           <NavDropdown

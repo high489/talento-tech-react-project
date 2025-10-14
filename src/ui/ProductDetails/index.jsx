@@ -17,7 +17,7 @@ const ProductDetails = ({ product, onAdd }) => {
     <div className={`w-100 d-flex flex-column ${styles['product-details']}`}>
       <ActionButton
         variant='secondary'
-        className={`my-3 align-self-start ${styles['back-button']}`}
+        className={`my-3 ${styles['back-button']}`}
         onClick={() => {navigate(-1)}}
       >
         Volver
@@ -53,7 +53,7 @@ const ProductDetails = ({ product, onAdd }) => {
           <p className={`mb-3 ${styles['product-brand']}`}>{product.brand}</p>
           <p className={`mb-3 ${styles['product-description']}`}>{product.description}</p>
           <h4 className={`mb-1 ${styles['product-price']}`}>
-            <span>{product.price.toFixed(2)}</span> USD
+            <span>${product.price.toFixed(2)}</span>
           </h4>
           <p className={`mb-3 ${styles['product-text']}`}>
             Estado:{' '}

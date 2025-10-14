@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom'
 
 import { ActionButton } from '@ui'
 
-const ProductsListItem = ({ product, onAdd, cartQuantity }) => {
+const ProductsListItem = ({ product, onAddToCard, cartQuantity }) => {
   const isOutOfStock = cartQuantity >= product.stock
 
   return (
     <Card className={`h-100 d-flex flex-column ${styles['products-list-item']}`}>
-      <Link to={`/e-commerce-app/${product.id}`}>
+      <Link to={`/products/${product.id}`}>
         <Card.Img
           src={product.thumbnail}
           alt={product.title}
@@ -21,7 +21,7 @@ const ProductsListItem = ({ product, onAdd, cartQuantity }) => {
       <Card.Body className='d-flex flex-column'>
         <div className='d-flex flex-column'>
           <Card.Title
-            as={Link} to={`/e-commerce-app/${product.id}`}
+            as={Link} to={`/products/${product.id}`}
             className={`mb-1 ${styles['product-title']}`}
           >
             {product.title}
@@ -41,10 +41,10 @@ const ProductsListItem = ({ product, onAdd, cartQuantity }) => {
           <div className={`w-100 d-flex justify-content-between align-items-center
             ${styles['product-info']}`}>
             <Card.Text className='m-0'>Disponible: {product.stock - cartQuantity}</Card.Text>
-            <Card.Text className='m-0'>Precio: {product.price} USD</Card.Text>
+            <Card.Text className='m-0'>Precio: ${product.price}</Card.Text>
           </div>
           <ActionButton
-            onClick={() => onAdd(product.id)}
+            onClick={() => onAddToCard(product.id)}
             className='w-100'
             disabled={isOutOfStock}
           >

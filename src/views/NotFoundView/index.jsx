@@ -1,7 +1,7 @@
-const NotFound = () => {
+const NotFoundView = () => {
   return (
     <div>Página no encontrada</div>    
   )
 }
 
-export { NotFound }
+export { NotFoundView }

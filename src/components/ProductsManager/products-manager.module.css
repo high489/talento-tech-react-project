@@ -2,7 +2,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: box-shadow 200ms ease;
 
-  width: 25%;
+  width: 33%;
 }
 
 .cart-button:hover {
@@ -10,17 +10,15 @@
   transition: box-shadow 200ms ease;
 }
 
-.cart-button-text {
-  width: 80%;
-}
-
-.modal-title {
+.modal-title,
+.modal-total {
   font-size: var(--font-size-title);
   font-weight: var(--font-weight-title);
   line-height: var(--line-height-title);
 }
 
 .modal-body {
+  min-height: 50vh;
   font-size: var(--font-size-normal);
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height-normal);
@@ -28,7 +26,7 @@
 
 @media (max-width: 991px) {
   .cart-button {
-    width: 40%;
+    width: 50%;
   }
 }
 
@@ -36,8 +34,5 @@
   .cart-button {
     width: 100%;
     align-self: stretch;
-  }
-  .cart-button-text {
-    width: 35%;
   }
 }

@@ -1,7 +1,7 @@
 export { ActionButton } from './buttons/ActionButton'
 
-export { Cart } from './Cart'
-export { CartItem } from './CartItem'
+export { CartList } from './CartList'
+export { CartListItem } from './CartListItem'
 export { CustomCard } from './CustomCard'
 export { GalleryInterests } from './GalleryInterests'
 export { OrderedList } from './OrderedList'

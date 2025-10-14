@@ -1,15 +1,15 @@
-import styles from './e-commerce-manager.module.css'
+import styles from './products-manager.module.css'
 import { useEffect, useMemo, useState } from 'react'
 
-import { ActionButton, Cart, ProductsList } from '@ui'
+import { ActionButton, CartList, ProductsList } from '@ui'
 import { Modal } from 'react-bootstrap'
 
-const ECommerceManager = () => {
+const ProductsManager = () => {
   const [isShowModal, setShowModal] = useState(false)
   const toggleModal = () => setShowModal(prev => !prev)
 
-  const [products, setProducts] = useState([])
-  const [cartList, setCartList] = useState([])
+  const [ products, setProducts ] = useState([])
+  const [ cartList, setCartList ] = useState([])
 
   const cartTotal = useMemo(() => {
     return cartList.reduce((sum, item) => sum + item.quantity * item.price, 0)
@@ -47,7 +47,6 @@ const ECommerceManager = () => {
   }
 
   const clearCart = () => {
-    toggleModal()
     setCartList([])
   }
 
@@ -79,47 +78,62 @@ const ECommerceManager = () => {
       >
         {
           cartList.length
-            ? <div className={`d-flex justify-content-between align-items-center ${styles['cart-button-text']}`}>
-                <span className=''>Carrito:</span>
-                <span className=''>{cartTotal.toFixed(2)} USD</span>
+            ? <div className='d-flex justify-content-center gap-1 align-items-center'>
+                <span>Carrito:</span>
+                <span>${cartTotal.toFixed(2)}</span>
               </div>
             : 'Carrito'
         }
       </ActionButton>
 
-      <Modal show={isShowModal} onHide={toggleModal}>
+      <Modal 
+        show={isShowModal}
+        onHide={toggleModal} 
+        centered 
+        size='lg'
+        scrollable={true}
+        keyboard 
+      >
         <Modal.Header className='text-bg-dark' closeButton closeVariant='white'>
           <Modal.Title className={styles['modal-title']}>Carrito</Modal.Title>
         </Modal.Header>
         <Modal.Body className={styles['modal-body']}>
-          <Cart 
+          <CartList 
             cartList={cartList}
-            cartTotal={cartTotal}
             onClear={clearCart}
             onBuy={buyProducts}
           />
         </Modal.Body>
-        <Modal.Footer className='text-bg-dark'>
-          <ActionButton 
-            variant='success' 
-            onClick={buyProducts}
-            disabled={!cartList.length}
-          >
-            Comprar
-          </ActionButton>
-          <ActionButton variant='danger' onClick={clearCart}>
-            Vaciar carrito
-          </ActionButton>
+        <Modal.Footer className='text-bg-dark d-flex justify-content-between'>
+          <span className={styles['modal-total']}>Total: ${cartTotal.toFixed(2)}</span>
+          <div className='w-50 d-flex justify-content-end gap-2'>
+            <ActionButton
+              variant='success'
+              className='w-50'
+              onClick={buyProducts}
+              disabled={!cartList.length}
+            >
+              Comprar
+            </ActionButton>
+            <ActionButton
+              variant='danger'
+              className='w-50'
+              onClick={clearCart}
+            >
+              Vaciar
+            </ActionButton>
+          </div>
+          
         </Modal.Footer>
       </Modal>
       
       <ProductsList
         products={products}
-        onAdd={addToCart}
+        onAddToCard={addToCart}
         cartList={cartList}
       />
     </div>
   )
 }
 
-export { ECommerceManager }
+export { ProductsManager }

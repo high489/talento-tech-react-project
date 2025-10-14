@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 
 const ProductDetailsManager = () => {
   const { id } = useParams()
-  const [product, setProduct] = useState(null)
+  const [ product, setProduct ] = useState(null)
 
   useEffect(() => {
     fetch(`https://dummyjson.com/products/${id}`)
