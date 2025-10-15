@@ -1,5 +1,5 @@
 export { ActionButton } from './buttons/ActionButton'
-export { CartButton } from './buttons/CartButton'
+export { CartModalButton } from './buttons/CartModalButton'
 
 export { CartList } from './CartList'
 export { CartListItem } from './CartListItem'

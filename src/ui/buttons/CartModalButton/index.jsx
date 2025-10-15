@@ -1,20 +1,11 @@
-import styles from './cart-button.module.css'
-import { useContext, useState } from 'react'
-
-import { ProductsContext } from '@app/store/context'
+import styles from './cart-modal-button.module.css'
+import { useState } from 'react'
 import { ActionButton, CartList } from '@ui'
 import { Modal } from 'react-bootstrap'
 
-const CartButton = ({ className }) => {
+const CartModalButton = ({ cartList = [], cartTotal = 0, clearCart, buyProducts, className }) => {
   const [ isShowModal, setShowModal ] = useState(false)
   const toggleModal = () => setShowModal(prev => !prev)
-
-  const {
-    cartList,
-    cartTotal,
-    clearCart,
-    buyProducts,
-  } = useContext(ProductsContext)
 
   const hasItems = cartList.length > 0
 
@@ -93,4 +84,4 @@ const CartButton = ({ className }) => {
   )
 }
 
-export { CartButton }
+export { CartModalButton }

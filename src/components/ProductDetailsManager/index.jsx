@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { ProductsContext } from '@app/store/context'
 
-import { ActionButton, CartButton, ProductDetails } from '@ui'
+import { ActionButton, CartModalButton, ProductDetails } from '@ui'
 
 const ProductDetailsManager = () => {
   const navigate = useNavigate()
@@ -12,6 +12,10 @@ const ProductDetailsManager = () => {
     productDetailsLoading,
     productDetailsError,
     loadProductById,
+    cartList,
+    cartTotal,
+    clearCart,
+    buyProducts,
     addToCart,
   } = useContext(ProductsContext)
 
@@ -33,7 +37,12 @@ const ProductDetailsManager = () => {
           Volver
         </ActionButton>
 
-        <CartButton />
+        <CartModalButton
+          cartList={cartList}
+          cartTotal={cartTotal}
+          clearCart={clearCart}
+          buyProducts={buyProducts}
+        />
       </div>
       <ProductDetails
         product={product}
