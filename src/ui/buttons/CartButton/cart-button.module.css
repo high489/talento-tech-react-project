@@ -23,16 +23,3 @@
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height-normal);
 }
-
-@media (max-width: 991px) {
-  .cart-button {
-    width: 50%;
-  }
-}
-
-@media (max-width: 767px) {
-  .cart-button {
-    width: 100%;
-    align-self: stretch;
-  }
-}

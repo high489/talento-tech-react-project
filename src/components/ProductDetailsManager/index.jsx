@@ -1,26 +1,47 @@
-import { ProductDetails } from '@ui'
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useContext, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { ProductsContext } from '@app/store/context'
+
+import { ActionButton, CartButton, ProductDetails } from '@ui'
 
 const ProductDetailsManager = () => {
+  const navigate = useNavigate()
   const { id } = useParams()
-  const [ product, setProduct ] = useState(null)
+  const {
+    productDetails,
+    productDetailsLoading,
+    productDetailsError,
+    loadProductById,
+    addToCart,
+  } = useContext(ProductsContext)
+
+  const product = productDetails[id]
 
   useEffect(() => {
-    fetch(`https://dummyjson.com/products/${id}`)
-      .then((res) => res.json())
-      .then((data) => setProduct(data))
-  }, [id])
-
-  if (!product) return null
+    if (!product) {
+      loadProductById(id)
+    }
+  }, [id, product, loadProductById])
 
   return (
-    <>
+    <div className='w-100 py-3 gap-3 d-flex flex-column'>
+      <div className='p-0 d-flex justify-content-between align-items-center'>
+        <ActionButton
+          variant='secondary'
+          onClick={() => {navigate(-1)}}
+        >
+          Volver
+        </ActionButton>
+
+        <CartButton />
+      </div>
       <ProductDetails
         product={product}
-        onAdd={() => {}}
+        productLoading={productDetailsLoading}
+        productError={productDetailsError}
+        onAddToCard={addToCart}
       />
-    </>    
+    </div>    
   )
 }
 

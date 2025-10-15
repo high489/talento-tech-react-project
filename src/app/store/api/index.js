@@ -1,0 +1,1 @@
+export { fetchAllProducts, fetchProductById } from './productsApi'
