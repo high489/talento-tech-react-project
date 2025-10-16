@@ -23,6 +23,8 @@ jobs:
         run: npm install
 
       - name: Build project
+        env:
+          VITE_DUMMYJSON_API_URL: ${{ secrets.VITE_DUMMYJSON_API_URL }}
         run: npm run build
 
       - name: Upload production-ready build files
