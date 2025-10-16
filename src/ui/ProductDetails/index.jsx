@@ -4,7 +4,9 @@ import { Alert, Carousel, Col, Row, Spinner, Table } from 'react-bootstrap'
 
 import { ActionButton } from '@ui'
 
-const ProductDetails = ({ product, productLoading, productError, onAddToCard }) => {
+const ProductDetails = ({ product, productLoading, productError, onAddToCard, cartQuantity }) => {
+  const isOutOfStock = product ? cartQuantity >= product.stock : false
+
   const [ imgIndex, setImgIndex ] = useState(0)
 
   const handleSelect = (selectedIndex) => {
@@ -60,9 +62,9 @@ const ProductDetails = ({ product, productLoading, productError, onAddToCard }) 
                 <span>${product.price.toFixed(2)}</span>
               </h4>
               <p className={`mb-3 ${styles['product-text']}`}>
-                Estado:{' '}
-                {product.stock > 0 ? (
-                  <span className='text-success'>Disponible</span>
+                Disponible:{' '}
+                {(product.stock - cartQuantity) > 0 ? (
+                  <span className='text-success'>{product.stock - cartQuantity}</span>
                 ) : (
                   <span className='text-danger'>No disponible</span>
                 )}
@@ -71,6 +73,7 @@ const ProductDetails = ({ product, productLoading, productError, onAddToCard }) 
                 variant='primary'
                 className={`mt-auto align-self-end ${styles['add-cart-button']}`}
                 onClick={() => onAddToCard(product.id)}
+                disabled={isOutOfStock}
               >
                 Agregar al carrito
               </ActionButton>

@@ -20,6 +20,8 @@ const ProductDetailsManager = () => {
   } = useContext(ProductsContext)
 
   const product = productDetails[id]
+  const cartItem = cartList.find(c => c.id === product.id)
+  const cartQuantity = cartItem ? cartItem.quantity : 0
 
   useEffect(() => {
     if (!product) {
@@ -49,6 +51,7 @@ const ProductDetailsManager = () => {
         productLoading={productDetailsLoading}
         productError={productDetailsError}
         onAddToCard={addToCart}
+        cartQuantity={cartQuantity}
       />
     </div>    
   )
