@@ -20,7 +20,9 @@ const ProductDetailsManager = () => {
   } = useContext(ProductsContext)
 
   const product = productDetails[id]
-  const cartItem = cartList.find(c => c.id === product.id)
+  const cartItem = product
+    ? cartList.find(c => c.id === product.id)
+    : null
   const cartQuantity = cartItem ? cartItem.quantity : 0
 
   useEffect(() => {

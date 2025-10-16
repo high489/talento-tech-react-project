@@ -66,7 +66,7 @@ const ProductDetails = ({ product, productLoading, productError, onAddToCard, ca
                 {(product.stock - cartQuantity) > 0 ? (
                   <span className='text-success'>{product.stock - cartQuantity}</span>
                 ) : (
-                  <span className='text-danger'>No disponible</span>
+                  <span className='text-danger'>0</span>
                 )}
               </p>
               <ActionButton
