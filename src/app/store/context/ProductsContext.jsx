@@ -80,12 +80,27 @@ export const ProductsProvider = ({ children }) => {
       alert('Carrito vacío')
       return
     }
-    setProducts((prevProducts) =>
-      prevProducts.map((p) => {
-        const item = cartList.find((c) => c.id === p.id)
+  
+    setProducts(prevProducts =>
+      prevProducts.map(p => {
+        const item = cartList.find(c => c.id === p.id)
         return item ? { ...p, stock: p.stock - item.quantity } : p
       })
     )
+  
+    setProductDetails(prevDetails => {
+      const updatedDetails = { ...prevDetails }
+      cartList.forEach(item => {
+        if (updatedDetails[item.id]) {
+          updatedDetails[item.id] = {
+            ...updatedDetails[item.id],
+            stock: updatedDetails[item.id].stock - item.quantity,
+          }
+        }
+      })
+      return updatedDetails
+    })
+  
     clearCart()
     alert('¡Compra exitosa!')
   }, [cartList, clearCart])
