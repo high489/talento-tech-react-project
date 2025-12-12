@@ -1,11 +1,15 @@
 import { API_URL } from '@app/constants'
 
-export const fetchAllProducts = async (limit = 30) => {
-  const res = await fetch(`${API_URL}/products?limit=${limit}`)
-  if (!res.ok) throw new Error('Failed to load all products')
-  const data = await res.json()
+export const fetchProducts = async ({ limit, skip } = {}) => {
+  let url = `${API_URL}/products`
+  if (limit !== undefined && skip !== undefined) {
+    url += `?limit=${limit}&skip=${skip}`
+  }
 
-  return data.products
+  const res = await fetch(url)
+  if (!res.ok) throw new Error('Failed to load all products')
+
+  return res.json()
 }
 
 export const fetchProductById = async (id) => {

@@ -1,5 +1,5 @@
-import { createContext, useState, useEffect, useCallback, useMemo } from 'react'
-import { fetchAllProducts, fetchProductById } from '../api'
+import { createContext, useState, useCallback, useMemo } from 'react'
+import { fetchProducts, fetchProductById } from '../api'
 
 export const ProductsContext = createContext()
 
@@ -8,13 +8,16 @@ export const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([])
   const [productsLoading, setProductsLoading] = useState(false)
   const [productsError, setProductsError] = useState(null)
+  const [productsTotal, setProductsTotal] = useState(0)
 
-  const loadProducts = useCallback(async () => {
+  const loadProducts = useCallback(async ({ limit, skip } = {}) => {
     setProductsLoading(true)
     setProductsError(null)
+
     try {
-      const data = await fetchAllProducts()
-      setProducts(data)
+      const { products, total } = await fetchProducts({ limit, skip })
+      setProducts(products)
+      setProductsTotal(total)
     } catch (err) {
       setProductsError(err.message)
     } finally {
@@ -116,6 +119,7 @@ export const ProductsProvider = ({ children }) => {
         products,
         productsLoading,
         productsError,
+        productsTotal,
         loadProducts,
         // single product by id
         productDetails,
