@@ -43,8 +43,15 @@ const Navigation = () => {
           >
             Productos
           </Nav.Link>
+          <Nav.Link
+            as={NavLink}
+            to='/carrito'
+            onClick={() => setExpanded(false)}
+          >
+            Carrito
+          </Nav.Link>
 
-          <NavDropdown
+          {/* <NavDropdown
             title='Ejercicios'
             id='nav-dropdown'
             menuVariant='dark'
@@ -62,7 +69,7 @@ const Navigation = () => {
             <NavDropdown.Item as={NavLink} to='/class03' onClick={() => setExpanded(false)}>
               Clase03
             </NavDropdown.Item>
-          </NavDropdown>
+          </NavDropdown> */}
         </Nav>
       </Navbar.Collapse>
     </Navbar>

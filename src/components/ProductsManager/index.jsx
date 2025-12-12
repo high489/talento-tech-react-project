@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react'
 
 import { ProductsContext } from '@app/store/context'
-import { CartModalButton, ProductsList } from '@ui'
+import { ProductsList } from '@ui'
 
 const ProductsManager = () => {
   const {
@@ -10,9 +10,6 @@ const ProductsManager = () => {
     productsError,
     loadProducts,
     cartList,
-    cartTotal,
-    clearCart,
-    buyProducts,
     addToCart,
   } = useContext(ProductsContext)
 
@@ -24,14 +21,6 @@ const ProductsManager = () => {
 
   return (
     <div className='w-100 py-3 gap-3 d-flex flex-column'>
-      <CartModalButton
-        className='align-self-end'
-        cartList={cartList}
-        cartTotal={cartTotal}
-        clearCart={clearCart}
-        buyProducts={buyProducts}
-      />
-
       <ProductsList
         products={products}
         productsLoading={productsLoading}

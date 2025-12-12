@@ -5,13 +5,15 @@ import { Header, Main, Footer, Navigation } from '@app/router/layout'
 
 const Layout = () => {
   return (
-    <div className='d-flex flex-column min-vh-100'>
-      <Header>
-        <Navigation/>
-      </Header>
-      <Main>
-        <Outlet />
-      </Main>
+    <div className='d-flex flex-column'>
+      <div className='d-flex flex-column min-vh-100'>
+        <Header>
+          <Navigation/>
+        </Header>
+        <Main>
+          <Outlet />
+        </Main>
+      </div>
       <Footer>
         <div className={`py-3 d-flex flex-column align-items-end ${styles['footer']}`}>
           <span className='fw-semibold'>Vitalii Matskaniuk</span>

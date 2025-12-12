@@ -10,8 +10,7 @@
   transition: box-shadow 200ms ease;
 }
 
-.modal-title,
-.modal-total {
+.modal-title {
   font-size: var(--font-size-title);
   font-weight: var(--font-weight-title);
   line-height: var(--line-height-title);
@@ -19,7 +18,4 @@
 
 .modal-body {
   min-height: 50vh;
-  font-size: var(--font-size-normal);
-  font-weight: var(--font-weight-normal);
-  line-height: var(--line-height-normal);
 }

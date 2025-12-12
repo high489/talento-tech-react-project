@@ -1,6 +1,7 @@
 export { ActionButton } from './buttons/ActionButton'
 export { CartModalButton } from './buttons/CartModalButton'
 
+export { CartControls } from './CartControls'
 export { CartList } from './CartList'
 export { CartListItem } from './CartListItem'
 export { CustomCard } from './CustomCard'

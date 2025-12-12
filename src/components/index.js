@@ -1,8 +1,10 @@
+export { CarritoManager } from './CarritoManager'
+export { ProductsManager } from './ProductsManager'
+export { ProductDetailsManager } from './ProductDetailsManager'
+
 export { Exercise01_1 } from './exercises/Exercise01-1'
 export { Exercise02_1 } from './exercises/Exercise02-1'
 export { Exercise02_2 } from './exercises/Exercise02-2'
 export { Exercise03_1 } from './exercises/Exercise03-1'
 export { Exercise03_2 } from './exercises/Exercise03-2'
 export { Exercise03_3 } from './exercises/Exercise03-3'
-export { ProductsManager } from './ProductsManager'
-export { ProductDetailsManager } from './ProductDetailsManager'

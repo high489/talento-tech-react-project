@@ -3,10 +3,6 @@
   align-self: flex-start;
 }
 
-.add-cart-button {
-  width: 200px;
-}
-
 .carousel :global(.carousel-indicators) {
   bottom: -30px;
 }

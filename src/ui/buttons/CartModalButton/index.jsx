@@ -1,6 +1,7 @@
 import styles from './cart-modal-button.module.css'
 import { useState } from 'react'
-import { ActionButton, CartList } from '@ui'
+
+import { ActionButton, CartControls, CartList } from '@ui'
 import { Modal } from 'react-bootstrap'
 
 const CartModalButton = ({ cartList = [], cartTotal = 0, clearCart, buyProducts, className }) => {
@@ -56,28 +57,13 @@ const CartModalButton = ({ cartList = [], cartTotal = 0, clearCart, buyProducts,
           />
         </Modal.Body>
 
-        <Modal.Footer className='text-bg-dark d-flex justify-content-between'>
-          <span className={styles['modal-total']}>
-            Total: ${cartTotal.toFixed(2)}
-          </span>
-
-          <div className='w-50 d-flex justify-content-end gap-2'>
-            <ActionButton
-              variant='success'
-              className='w-50'
-              onClick={handleBuyProducts}
-              disabled={!cartList.length}
-            >
-              Comprar
-            </ActionButton>
-            <ActionButton
-              variant='danger'
-              className='w-50'
-              onClick={handleClearCart}
-            >
-              Vaciar
-            </ActionButton>
-          </div>
+        <Modal.Footer className='d-block text-bg-dark'>
+          <CartControls
+            total={cartTotal}
+            isCartEmpty={!cartList.length}
+            handleBuyProducts={handleBuyProducts}
+            handleClearCart={handleClearCart}
+          />
         </Modal.Footer>
       </Modal>
     </>

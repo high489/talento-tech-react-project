@@ -71,7 +71,7 @@ const ProductDetails = ({ product, productLoading, productError, onAddToCard, ca
               </p>
               <ActionButton
                 variant='primary'
-                className={`mt-auto align-self-end ${styles['add-cart-button']}`}
+                className='w-100 mt-auto align-self-end'
                 onClick={() => onAddToCard(product.id)}
                 disabled={isOutOfStock}
               >
