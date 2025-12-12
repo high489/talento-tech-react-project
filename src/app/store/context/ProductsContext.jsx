@@ -1,5 +1,5 @@
-import { createContext, useState, useCallback, useMemo } from 'react'
-import { fetchProducts, fetchProductById } from '../api'
+import { createContext, useState, useCallback, useMemo, useEffect } from 'react'
+import { fetchProducts, fetchProductById, fetchCategories, fetchProductsByCategory } from '../api'
 
 export const ProductsContext = createContext()
 
@@ -10,20 +10,45 @@ export const ProductsProvider = ({ children }) => {
   const [productsError, setProductsError] = useState(null)
   const [productsTotal, setProductsTotal] = useState(0)
 
-  const loadProducts = useCallback(async ({ limit, skip, search } = {}) => {
+  const loadProducts = useCallback(async ({ limit, skip, search, category } = {}) => {
     setProductsLoading(true)
     setProductsError(null)
-  
+
     try {
-      const { products, total } = await fetchProducts({ limit, skip, search })
-      setProducts(products)
-      setProductsTotal(total)
+      let data
+      if (category !== undefined) {
+        // load by category
+        data = await fetchProductsByCategory(category, { limit, skip })
+      } else {
+        data = await fetchProducts({ limit, skip, search })
+      }
+
+      setProducts(data.products || [])
+      setProductsTotal(data.total || (data.products ? data.products.length : 0))
     } catch (err) {
       setProductsError(err.message)
     } finally {
       setProductsLoading(false)
     }
   }, [])
+
+  // categories
+  const [categories, setCategories] = useState([])
+  const [categoriesLoading, setCategoriesLoading] = useState(false)
+  const [categoriesError, setCategoriesError] = useState(null)
+
+  const loadCategories = async () => {
+    setCategoriesLoading(true)
+    setCategoriesError(null)
+    try {
+      const cats = await fetchCategories()
+      setCategories(cats)
+    } catch (err) {
+      setCategoriesError(err.message)
+    } finally {
+      setCategoriesLoading(false)
+    }
+  }
 
   // single product by id
   const [productDetails, setProductDetails] = useState({})
@@ -112,6 +137,10 @@ export const ProductsProvider = ({ children }) => {
     return cartList.reduce((sum, item) => sum + item.quantity * item.price, 0)
   }, [cartList])
   
+  useEffect(() => {
+    loadCategories()
+  }, [])
+  
   return (
     <ProductsContext.Provider
       value={{
@@ -121,6 +150,10 @@ export const ProductsProvider = ({ children }) => {
         productsError,
         productsTotal,
         loadProducts,
+        // categories
+        categories,
+        categoriesLoading,
+        categoriesError,
         // single product by id
         productDetails,
         productDetailsLoading,

@@ -1,1 +1,6 @@
-export { fetchProducts, fetchProductById } from './productsApi'
+export { 
+  fetchProducts,
+  fetchCategories,
+  fetchProductsByCategory,
+  fetchProductById,
+} from './productsApi'

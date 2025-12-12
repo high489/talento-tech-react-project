@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from 'react'
+import { Col, Row } from 'react-bootstrap'
 
 import { ProductsContext } from '@app/store/context'
 import { useDebounce } from '@app/hooks'
-import { PaginationControls, ProductsList, SearchBar } from '@ui'
+import { PaginationControls, ProductsCategorySelector, ProductsList, SearchBar } from '@ui'
 
 const ProductsManager = ({ pagination = false }) => {
   const {
@@ -13,46 +14,63 @@ const ProductsManager = ({ pagination = false }) => {
     loadProducts,
     cartList,
     addToCart,
+    categories,
+    categoriesLoading,
   } = useContext(ProductsContext)
   
-  // search params
+  const [ category, setCategory ] = useState('')
+  
+  // search
   const [ searchTerm, setSearchTerm ] = useState('')
   const debouncedSearch = useDebounce(searchTerm, 500)
 
-  // pagination params
+  // pagination
   const [ page, setPage ] = useState(1)
   const limit = 12
   const skip = (page - 1) * limit
   const totalPages = Math.ceil(productsTotal / limit)
 
-  // reset to first page when search changes
   useEffect(() => {
-    setPage(1)
-  }, [debouncedSearch])
-
-  // load products
-  useEffect(() => {
-    if (pagination) {
-      loadProducts({
-        limit,
-        skip,
-        search: debouncedSearch.length >= 2 ? debouncedSearch : undefined
-      })
-    } else {
-      loadProducts({
-        search: debouncedSearch.length >= 2 ? debouncedSearch : undefined
-      })
-    }
-  }, [pagination, page, debouncedSearch, loadProducts])
+    loadProducts({
+      limit: pagination ? limit : undefined,
+      skip: pagination ? skip : undefined,
+      search: debouncedSearch.length >= 2 ? debouncedSearch : undefined,
+      category: category || undefined,
+    })
+  }, [pagination, page, debouncedSearch, category])
 
   return (
     <div className='w-100 py-3 gap-3 d-flex flex-column'>
-      <SearchBar
-        className='align-self-end'
-        value={searchTerm}
-        onChange={setSearchTerm}
-        placeholder='Buscar productos...'
-      />
+      <Row className='g-3'>
+
+        <Col xs={12} md={6}>
+          <SearchBar
+            value={searchTerm}
+            onChange={(val) => {
+              setSearchTerm(val)
+              if (val) setCategory('')
+              setPage(1)
+            }}
+            placeholder='Buscar productos...'
+            className='w-100'
+          />
+        </Col>
+
+        <Col xs={12} md={6}>
+          <ProductsCategorySelector
+            categories={categories}
+            value={category}
+            disabled={categoriesLoading}
+            onChange={(val) => {
+              setCategory(val)
+              if (val) setSearchTerm('')
+              setPage(1)
+            }}
+            className='w-100'
+          />
+        </Col>
+      </Row>
+
       <ProductsList
         products={products}
         productsLoading={productsLoading}
@@ -60,11 +78,14 @@ const ProductsManager = ({ pagination = false }) => {
         onAddToCard={addToCart}
         cartList={cartList}
       />
-      <PaginationControls
-        page={page}
-        totalPages={totalPages}
-        onChange={setPage}
-      />
+
+      {pagination && (
+        <PaginationControls
+          page={page}
+          totalPages={totalPages}
+          onChange={setPage}
+        />
+      )}
     </div>
   )
 }
