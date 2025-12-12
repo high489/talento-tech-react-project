@@ -10,12 +10,12 @@ export const ProductsProvider = ({ children }) => {
   const [productsError, setProductsError] = useState(null)
   const [productsTotal, setProductsTotal] = useState(0)
 
-  const loadProducts = useCallback(async ({ limit, skip } = {}) => {
+  const loadProducts = useCallback(async ({ limit, skip, search } = {}) => {
     setProductsLoading(true)
     setProductsError(null)
-
+  
     try {
-      const { products, total } = await fetchProducts({ limit, skip })
+      const { products, total } = await fetchProducts({ limit, skip, search })
       setProducts(products)
       setProductsTotal(total)
     } catch (err) {
