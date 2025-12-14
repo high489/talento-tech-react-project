@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { ProductsContext } from '@app/store/context'
 import { ActionButton, CartControls, CartList } from '@ui'
 
-const CarritoManager = () => {
+const CartManager = () => {
   const navigate = useNavigate()
   const {
     cartList,
@@ -12,6 +12,15 @@ const CarritoManager = () => {
     clearCart,
     buyProducts,
   } = useContext(ProductsContext)
+
+  const handleBuyProducts = async () => {
+    try {
+      await buyProducts()
+      navigate('/', { replace: true })
+    } catch (err) {
+      console.error('Error buying products:', err)
+    }
+  }
 
   return (
     <div className='w-100 py-3 gap-3 d-flex flex-column flex-grow-1'>
@@ -38,7 +47,7 @@ const CarritoManager = () => {
         <CartControls
           total={cartTotal}
           isCartEmpty={!cartList.length}
-          handleBuyProducts={buyProducts}
+          handleBuyProducts={handleBuyProducts}
           handleClearCart={clearCart}
         />
       </div>
@@ -46,4 +55,4 @@ const CarritoManager = () => {
   )
 }
 
-export { CarritoManager }
+export { CartManager }

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { ProductsContext } from '@app/store/context'
 
@@ -13,11 +13,11 @@ const ProductDetailsManager = () => {
     productDetailsError,
     loadProductById,
     cartList,
-    cartTotal,
-    clearCart,
-    buyProducts,
     addToCart,
+    deleteProduct,
   } = useContext(ProductsContext)
+
+  const [deleting, setDeleting] = useState(false)
 
   const product = productDetails[id]
   const cartItem = product
@@ -30,6 +30,31 @@ const ProductDetailsManager = () => {
       loadProductById(id)
     }
   }, [id, product, loadProductById])
+
+  useEffect(() => {
+    if (product && productDetailsError) {
+      loadProductById(id)
+    }
+  }, [product, productDetailsError, id, loadProductById])
+
+  const handleEdit = () => {
+    navigate(`/products/${id}/update`)
+  }
+
+  const handleDelete = async () => {
+    const confirmed = window.confirm('¿Está seguro de que desea eliminar este producto?')
+    if (!confirmed) return
+
+    setDeleting(true)
+    try {
+      await deleteProduct(id)
+      navigate('/')
+    } catch (err) {
+      alert('Error al eliminar el producto: ' + err.message)
+    } finally {
+      setDeleting(false)
+    }
+  }
 
   return (
     <div className='w-100 py-3 gap-3 d-flex flex-column'>
@@ -48,6 +73,24 @@ const ProductDetailsManager = () => {
         onAddToCard={addToCart}
         cartQuantity={cartQuantity}
       />
+
+      {!productDetailsLoading && !productDetailsError && product && (
+        <div className='d-flex gap-3 justify-content-end mt-3'>
+          <ActionButton
+            variant='warning'
+            onClick={handleEdit}
+          >
+            Editar producto
+          </ActionButton>
+          <ActionButton
+            variant='danger'
+            onClick={handleDelete}
+            disabled={deleting}
+          >
+            {deleting ? 'Eliminando...' : 'Eliminar producto'}
+          </ActionButton>
+        </div>
+      )}
     </div>    
   )
 }

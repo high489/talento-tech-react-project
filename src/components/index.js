@@ -1,6 +1,8 @@
-export { CarritoManager } from './CarritoManager'
+export { CartManager } from './CartManager'
+export { ProductCreateManager } from './ProductCreateManager'
 export { ProductsManager } from './ProductsManager'
 export { ProductDetailsManager } from './ProductDetailsManager'
+export { ProductUpdateManager } from './ProductUpdateManager'
 
 export { Exercise01_1 } from './exercises/Exercise01-1'
 export { Exercise02_1 } from './exercises/Exercise02-1'

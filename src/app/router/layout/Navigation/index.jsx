@@ -36,12 +36,19 @@ const Navigation = () => {
           >
             Inicio
           </Nav.Link>
-          <Nav.Link
+          {/* <Nav.Link
             as={NavLink}
             to='/products'
             onClick={() => setExpanded(false)}
           >
             Productos
+          </Nav.Link> */}
+          <Nav.Link
+            as={NavLink}
+            to='/products/create'
+            onClick={() => setExpanded(false)}
+          >
+            Añadir producto
           </Nav.Link>
           <Nav.Link
             as={NavLink}

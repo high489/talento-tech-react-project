@@ -53,3 +53,60 @@ export const fetchProductById = async (id) => {
 
   return res.json()
 }
+
+// create product
+export const createProduct = async (productData) => {
+  const res = await fetch(`${API_URL}/products/add`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(productData)
+  })
+  
+  if (!res.ok) throw new Error('Failed to create product')
+  
+  return res.json()
+}
+
+// update product
+export const updateProduct = async (id, productData) => {
+  const res = await fetch(`${API_URL}/products/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(productData)
+  })
+  
+  // If 404, product was created locally - return updated data with existing id
+  if (res.status === 404) {
+    return { id: parseInt(id), ...productData }
+  }
+  
+  if (!res.ok) throw new Error('Failed to update product')
+  
+  return res.json()
+}
+
+// delete product
+export const deleteProduct = async (id) => {
+  try {
+    const res = await fetch(`${API_URL}/products/${id}`, {
+      method: 'DELETE'
+    })
+    
+    console.log('Delete response status:', res.status)
+    
+    // 404 is OK - product might be locally created and doesn't exist on server
+    if (res.status === 404) {
+      console.log('Product not found on server (404), treating as successful delete')
+      return { id: parseInt(id), isDeleted: true, deletedOn: new Date().toISOString() }
+    }
+    
+    if (!res.ok) {
+      throw new Error('Failed to delete product')
+    }
+    
+    return res.json()
+  } catch (err) {
+    console.error('Delete error:', err)
+    throw err
+  }
+}

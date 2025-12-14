@@ -2,9 +2,10 @@ import { Route, createBrowserRouter, createRoutesFromElements } from 'react-rout
 
 import { Layout } from './layout/Layout'
 import {
-  HomeView,
-  CarritoView,
+  CartView,
   ProductsView,
+  ProductCreateView,
+  ProductUpdateView,
   ProductDetailsView,
   NotFoundView,
 
@@ -16,10 +17,12 @@ import {
 const router = createBrowserRouter(createRoutesFromElements(
   <>
     <Route path='/' element={<Layout />}>
-      <Route index element={<HomeView />} />
-      <Route path='carrito' element={<CarritoView />} />
+      <Route index element={<ProductsView />} />
+      <Route path='carrito' element={<CartView />} />
       <Route path='products' element={<ProductsView />} />
+      <Route path='products/create' element={<ProductCreateView />} />
       <Route path='products/:id' element={<ProductDetailsView />} />
+      <Route path='products/:id/update' element={<ProductUpdateView />} />
       <Route path='*' element={<NotFoundView />} />
 
       {/* <Route path='class01' element={<Class01 />} />

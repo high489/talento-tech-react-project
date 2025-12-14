@@ -1,8 +1,8 @@
 import styles from './search-bar.module.css'
 import { Form } from 'react-bootstrap'
 
-import SearchIcon from '@public/assets/icons/search-icon.svg?react'
-import ClearSearchIcon from '@public/assets/icons/clear-search-icon.svg?react'
+import SearchIcon from '@assets/icons/search-icon.svg?react'
+import ClearSearchIcon from '@assets/icons/clear-search-icon.svg?react'
 
 const SearchBar = ({
   value,

@@ -1,8 +1,10 @@
-export { CarritoView } from './CarritoView'
+export { CartView } from './CartView'
 export { ProductsView } from './ProductsView'
 export { HomeView } from './HomeView'
 export { NotFoundView } from './NotFoundView'
 export { ProductDetailsView } from './ProductDetailsView'
+export { ProductCreateView } from './ProductCreateView'
+export { ProductUpdateView } from './ProductUpdateView'
 
 export { Class01 } from './classes/Class01'
 export { Class02 } from './classes/Class02'
