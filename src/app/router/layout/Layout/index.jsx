@@ -1,9 +1,12 @@
 import styles from './layout.module.css'
 import { Outlet } from 'react-router-dom'
 
+import { useUserCartSync } from '@app/hooks'
 import { Header, Main, Footer, Navigation } from '@app/router/layout'
 
 const Layout = () => {
+  useUserCartSync()
+  
   return (
     <div className='d-flex flex-column'>
       <div className='d-flex flex-column min-vh-100'>

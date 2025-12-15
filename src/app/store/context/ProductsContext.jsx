@@ -1,4 +1,4 @@
-import { createContext, useState, useCallback, useMemo, useEffect } from 'react'
+import { createContext, useState, useCallback, useMemo, useEffect, useContext } from 'react'
 import {
   fetchProducts,
   fetchProductById,
@@ -8,10 +8,16 @@ import {
   updateProduct as apiUpdateProduct,
   deleteProduct as apiDeleteProduct,
 } from '../api'
+import { UsersContext } from './UsersContext'
 
 export const ProductsContext = createContext()
 
+const CART_STORAGE_KEY = 'marketplace:carts'
+
 export const ProductsProvider = ({ children }) => {
+  const { user } = useContext(UsersContext)
+  const userId = user?.id
+
   // local-only products (created in this session)
   const [localProducts, setLocalProducts] = useState([])
   const [deletedProductIds, setDeletedProductIds] = useState([])
@@ -206,70 +212,73 @@ export const ProductsProvider = ({ children }) => {
   }, [])
 
   // cart
-  const [cartList, setCartList] = useState([])
+  const [cartByUser, setCartByUser] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem(CART_STORAGE_KEY)) || {}
+    } catch {
+      return {}
+    }
+  })
+
+  const cartList = useMemo(
+    () => (userId ? cartByUser[userId] || [] : []),
+    [cartByUser, userId]
+  )
+
+  const [cartOwnerId, setCartOwnerId] = useState(null)
 
   const addToCart = useCallback((productId) => {
-    const product = products.find(p => p.id === productId)
-    if (!product) return
+    if (!userId) return
 
-    const existing = cartList.find(i => i.id === productId)
-    const qty = existing ? existing.quantity : 0
+    setCartByUser(prev => {
+      const userCart = prev[userId] || []
+      const product = products.find(p => p.id === productId)
+      if (!product) return prev
 
-    if (qty >= product.stock) return alert('Cantidad no disponible')
+      const existing = userCart.find(i => i.id === productId)
+      const qty = existing ? existing.quantity : 0
+      if (qty >= product.stock) return prev
 
-    setCartList(prev =>
-      existing
-        ? prev.map(i => i.id === productId ? { ...i, quantity: i.quantity + 1 } : i)
-        : [...prev, { ...product, quantity: 1 }]
-    )
-  }, [products, cartList])
+      const updatedCart = existing
+        ? userCart.map(i =>
+            i.id === productId
+              ? { ...i, quantity: i.quantity + 1 }
+              : i
+          )
+        : [...userCart, { ...product, quantity: 1 }]
 
-  const clearCart = useCallback(() => setCartList([]), [])
+      return {
+        ...prev,
+        [userId]: updatedCart,
+      }
+    })
+  }, [products, userId])
+
+  const clearCart = useCallback(() => {
+    if (!userId) return
+    setCartByUser(prev => ({ ...prev, [userId]: [] }))
+  }, [userId])
 
   // buy products from cart
   const buyProducts = useCallback(() => {
-    if (cartList.length === 0) {
+    if (!cartList.length) {
       alert('Carrito vacío')
       return
     }
-  
+
     setLocalProducts(prev => {
       const map = new Map(prev.map(p => [p.id, p]))
-  
       cartList.forEach(item => {
-        const existing =
-          map.get(item.id) ||
-          products.find(p => p.id === item.id)
-  
+        const existing = map.get(item.id) || products.find(p => p.id === item.id)
         if (!existing) return
-  
         map.set(item.id, {
           ...existing,
           stock: Math.max(0, existing.stock - item.quantity),
         })
       })
-  
       return Array.from(map.values())
     })
-  
-    setProductDetails(prev => {
-      const next = { ...prev }
-  
-      cartList.forEach(item => {
-        if (next[item.id]) {
-          next[item.id] = {
-            ...next[item.id],
-            stock: Math.max(
-              0,
-              next[item.id].stock - item.quantity
-            ),
-          }
-        }
-      })
-  
-      return next
-    })
-  
+
     clearCart()
     alert('¡Compra exitosa!')
   }, [cartList, products, clearCart])
@@ -283,6 +292,13 @@ export const ProductsProvider = ({ children }) => {
   useEffect(() => {
     loadCategories()
   }, [])
+
+  useEffect(() => {
+    localStorage.setItem(
+      CART_STORAGE_KEY,
+      JSON.stringify(cartByUser)
+    )
+  }, [cartByUser])
 
   return (
     <ProductsContext.Provider
@@ -303,6 +319,9 @@ export const ProductsProvider = ({ children }) => {
         updateProduct,
         deleteProduct,
         cartList,
+        setCartByUser,
+        cartOwnerId,
+        setCartOwnerId,
         cartTotal,
         addToCart,
         clearCart,
