@@ -7,3 +7,8 @@ export {
   updateProduct,
   deleteProduct,
 } from './productsApi'
+
+export {
+  loginRequest,
+  fetchUserCart,
+} from './usersApi'

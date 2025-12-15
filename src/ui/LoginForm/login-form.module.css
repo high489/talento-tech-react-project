@@ -1,0 +1,25 @@
+.login-form-title {
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-title);
+  line-height: var(--line-height-title);
+}
+
+.form-group-label {
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+.form-group-control {
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+.form-group-control::placeholder {
+  opacity: 0.5;
+}
+
+.form-group-control:focus::placeholder {
+  opacity: 0;
+}

@@ -6,12 +6,14 @@ const ActionButton = ({
   onClick,
   disabled = false,
   variant = 'primary',
+  type = 'button',
   className = '',
   customStyle = {},
 }) => {
 
   return (
     <Button
+      type={type}  
       variant={variant}
       className={`${styles['action-button']} ${className}`}
       onClick={onClick}

@@ -1,6 +1,7 @@
 export { CartView } from './CartView'
 export { ProductsView } from './ProductsView'
 export { HomeView } from './HomeView'
+export { LoginView } from './LoginView'
 export { NotFoundView } from './NotFoundView'
 export { ProductDetailsView } from './ProductDetailsView'
 export { ProductCreateView } from './ProductCreateView'

@@ -1,5 +1,6 @@
+import { ActionButton } from '@ui'
 import styles from './product-form.module.css'
-import { Alert, Button, Col, Form, Row, Spinner } from 'react-bootstrap'
+import { Alert, Col, Form, Row, Spinner } from 'react-bootstrap'
 
 const ProductForm = ({ 
   formData, 
@@ -261,15 +262,15 @@ const ProductForm = ({
       </Row>
       
       <div className='d-flex gap-3 justify-content-end'>
-        <Button
+        <ActionButton
           type='button'
           variant='secondary'
           onClick={handleCancelClick}
           disabled={loading}
         >
           Cancelar
-        </Button>
-        <Button
+        </ActionButton>
+        <ActionButton
           type='submit'
           variant='primary'
           disabled={loading}
@@ -289,7 +290,7 @@ const ProductForm = ({
           ) : (
             isEditMode ? 'Actualizar producto' : 'Crear producto'
           )}
-        </Button>
+        </ActionButton>
       </div>
     </Form>
   )

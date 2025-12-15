@@ -1,14 +1,24 @@
 import styles from './navigation.module.css'
 import { useState } from 'react'
-import { Nav, Navbar, NavDropdown } from 'react-bootstrap'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Nav, Navbar, NavDropdown, Button } from 'react-bootstrap'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 
+import { useAuth } from '@app/hooks/ViewModel'
 import OwlLogo from '@app/assets/icons/owl.svg?react'
 
 const Navigation = () => {
-  const [expanded, setExpanded] = useState(false)
+  const [ expanded, setExpanded ] = useState(false)
+  const navigate = useNavigate()
   const location = useLocation()
-  const isDropdownActive = location.pathname.startsWith('/class')
+  // const isDropdownActive = location.pathname.startsWith('/class')
+
+  const { isAuth, user, logout } = useAuth()
+
+  const handleLogout = () => {
+    logout()
+    setExpanded(false)
+    navigate('/login')
+  }
 
   return (
     <Navbar
@@ -36,13 +46,6 @@ const Navigation = () => {
           >
             Inicio
           </Nav.Link>
-          {/* <Nav.Link
-            as={NavLink}
-            to='/products'
-            onClick={() => setExpanded(false)}
-          >
-            Productos
-          </Nav.Link> */}
           <Nav.Link
             as={NavLink}
             to='/products/create'
@@ -57,6 +60,31 @@ const Navigation = () => {
           >
             Carrito
           </Nav.Link>
+
+          {!isAuth && (
+            <Nav.Link
+              as={NavLink}
+              to='/login'
+              onClick={() => setExpanded(false)}
+            >
+              Login
+            </Nav.Link>
+          )}
+
+          {isAuth && (
+            <Nav.Item className='d-flex align-items-center gap-2 ms-md-3'>
+              <Navbar.Text className='text-light'>
+                {user?.username}
+              </Navbar.Text>
+              <Button
+                size='sm'
+                variant='outline-light'
+                onClick={handleLogout}
+              >
+                Logout
+              </Button>
+            </Nav.Item>
+          )}
 
           {/* <NavDropdown
             title='Ejercicios'

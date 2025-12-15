@@ -4,13 +4,16 @@ import './index.css'
 import { RouterProvider } from 'react-router-dom'
 
 import { router } from '@app/router'
-import { ProductsProvider } from '@app/store/context'
+import { UsersProvider, ProductsProvider } from '@app/store/context'
 
 function App() {
   return (
-    <ProductsProvider>
-      <RouterProvider router={router} />
-    </ProductsProvider>
+    <UsersProvider>
+      <ProductsProvider>
+        <RouterProvider router={router} />
+      </ProductsProvider>
+    </UsersProvider>
+    
   )
 }
 
